@@ -4,8 +4,19 @@ import werkzeug
 from model import model
 from nltk.tokenize import word_tokenize
 
-origin = (model["he"] + model["she"]) / 2
-bias = model["he"] - model["she"]
+biased_pairs = [
+    (model["he"], model["she"]),
+    (model["man"], model["woman"]),
+    (model["boy"], model["girl"]),
+    (model["him"], model["her"]),
+    (model["male"], model["female"]),
+]
+
+origins = [(pair[0] + pair[1]) / 2 for pair in biased_pairs]
+biases = [pair[0] - pair[1] for pair in biased_pairs]
+
+origin = sum(origins) / len(origins)
+bias = sum(biases) / len(biases)
 
 
 @app.route("/")

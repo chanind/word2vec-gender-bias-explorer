@@ -1,0 +1,19 @@
+version: '3'
+services:
+  bias-server:
+    container_name: bias-server
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+    volumes:
+      - ./app:/app
+      - bash_history:/root
+    command: python main.py
+
+volumes:
+  bash_history:
