@@ -12,7 +12,7 @@ RUN apt-get update \
 
 COPY ./download_data.py .
 RUN python download_data.py
-RUN wget https://s3.amazonaws.com/dl4j-distribution/GoogleNews-vectors-negative300.bin.gz \
+RUN wget -q https://s3.amazonaws.com/dl4j-distribution/GoogleNews-vectors-negative300.bin.gz \
     && gunzip GoogleNews-vectors-negative300.bin
 
 # Copy local code to the container image.
