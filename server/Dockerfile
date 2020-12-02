@@ -5,7 +5,7 @@ ENV PYTHONUNBUFFERED True
 
 COPY ./requirements.txt .
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends gcc build-essential\
+    && apt-get install -y --no-install-recommends gcc build-essential wget \
     && rm -rf /var/lib/apt/lists/* \
     && pip install -r requirements.txt \
     && apt-get purge -y --auto-remove gcc build-essential
