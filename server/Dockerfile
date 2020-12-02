@@ -9,8 +9,11 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && pip install -r requirements.txt \
     && apt-get purge -y --auto-remove gcc build-essential
+
 COPY ./download_data.py .
 RUN python download_data.py
+RUN wget https://s3.amazonaws.com/dl4j-distribution/GoogleNews-vectors-negative300.bin.gz \
+    && gunzip GoogleNews-vectors-negative300.bin
 
 # Copy local code to the container image.
 ENV APP_HOME /app

@@ -1,5 +1,5 @@
-import gensim.downloader as api
+from gensim.models import KeyedVectors
 
-# model = api.load("glove-twitter-100")
-# model = api.load("glove-twitter-25")
-model = api.load("word2vec-google-news-300")
+model = KeyedVectors.load_word2vec_format(
+    "GoogleNews-vectors-negative300.bin", binary=True
+)
