@@ -1,22 +1,8 @@
 from app import app
 from flask import request, jsonify
 import werkzeug
-from model import model
+from detect_bias import detect_bias
 from nltk.tokenize import word_tokenize
-
-biased_pairs = [
-    (model["he"], model["she"]),
-    (model["man"], model["woman"]),
-    (model["boy"], model["girl"]),
-    (model["him"], model["her"]),
-    (model["male"], model["female"]),
-]
-
-origins = [(pair[0] + pair[1]) / 2 for pair in biased_pairs]
-biases = [pair[0] - pair[1] for pair in biased_pairs]
-
-origin = sum(origins) / len(origins)
-bias = sum(biases) / len(biases)
 
 
 @app.route("/")
@@ -36,10 +22,6 @@ def detect():
     tokens = word_tokenize(sentence.lower())
     results = []
     for token in tokens:
-        token_result = {"token": token}
-        if token in model:
-            token_result["bias"] = model.cosine_similarities(
-                bias, [model[token] - origin]
-            )[0].astype(float)
+        token_result = {"token": token, "bias": detect_bias(token)}
         results.append(token_result)
     return jsonify({"results": results})
