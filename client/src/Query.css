@@ -1,0 +1,38 @@
+.Query-header {
+  font-size: 50px;
+  padding: 40px 0;
+}
+.Query-search {
+  padding: 10px;
+  border-radius: 3px;
+  background: white;
+  color: #212225;
+  outline: none;
+  min-width: 400px;
+  border: none;
+  font-size: 20px;
+}
+.Query-searchButton {
+  background: rgb(127, 216, 247);
+  outline: none;
+  font-size: 20px;
+  padding: 10px 20px;
+  border: 1px solid rgb(63, 142, 170);
+  border-radius: 3px;
+  margin-left: 5px;
+}
+.Query-searchButton:hover,
+.Query-searchButton:focus {
+  background: rgb(161, 228, 252);
+}
+
+.Query-error {
+  padding: 30px 0;
+}
+.Query-errorInner {
+  padding: 10px;
+  background: white;
+  color: red;
+  border-radius: 3px;
+  display: inline-block;
+}

@@ -1,0 +1,15 @@
+.Loading {
+  animation: Loading-spin infinite 1s linear;
+  font-size: 60px;
+  line-height: 60px;
+  display: inline-block;
+}
+
+@keyframes Loading-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

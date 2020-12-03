@@ -1,0 +1,48 @@
+.Intro {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Intro p {
+  line-height: 25px;
+}
+
+.Intro-header {
+  font-size: 50px;
+  padding-bottom: 40px;
+}
+
+.Intro-searchForm {
+  display: flex;
+  margin-top: 10px;
+}
+.Intro-search {
+  padding: 10px;
+  border-radius: 3px;
+  background: white;
+  color: #212225;
+  outline: none;
+  min-width: 400px;
+  border: none;
+  font-size: 20px;
+}
+.Intro-go {
+  background: rgb(127, 216, 247);
+  outline: none;
+  font-size: 20px;
+  padding: 10px 20px;
+  border: 1px solid rgb(63, 142, 170);
+  border-radius: 3px;
+  margin-left: 5px;
+}
+.Intro-go:hover,
+.Intro-go:focus {
+  background: rgb(161, 228, 252);
+}
+
+.Intro-inspiration {
+  margin-top: 50px;
+}

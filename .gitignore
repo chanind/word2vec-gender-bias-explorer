@@ -133,3 +133,6 @@ dmypy.json
 
 # editors
 .vscode
+
+# node
+.eslintcache
