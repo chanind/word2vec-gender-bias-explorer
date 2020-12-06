@@ -36,3 +36,60 @@
   border-radius: 3px;
   display: inline-block;
 }
+
+.Query-results {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  margin: 20px auto;
+  max-width: 500px;
+}
+
+.Query-result {
+  padding: 5px 20px;
+  margin: 0 5px;
+  background: white;
+  color: #212225;
+  border-radius: 3px;
+  font-size: 20px;
+}
+
+.Query-resultBias {
+  height: 10px;
+  margin: 10px 0 5px;
+  position: relative;
+}
+.Query-result.is-femaleBias .Query-resultBias {
+  margin-left: 50%;
+  float: left;
+}
+.Query-result.is-maleBias .Query-resultBias {
+  margin-right: 50%;
+  float: right;
+}
+
+.Query-resultBiasPointer {
+  position: absolute;
+  top: -5px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+.Query-result.is-femaleBias .Query-resultBiasPointer {
+  border-right: none;
+  border-left: 10px solid;
+  left: 100%;
+}
+.Query-result.is-maleBias .Query-resultBiasPointer {
+  border-left: none;
+  border-right: 10px solid;
+  right: 100%;
+}
+
+.Query-resultBiasText {
+  font-size: 8px;
+  color: #999;
+  padding-top: 5px;
+  clear: both;
+}
