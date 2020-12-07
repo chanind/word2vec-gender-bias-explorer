@@ -42,12 +42,13 @@
   padding: 10px;
   justify-content: center;
   margin: 20px auto;
-  max-width: 500px;
+  max-width: 100%;
+  flex-wrap: wrap;
 }
 
 .Query-result {
   padding: 5px 20px;
-  margin: 0 5px;
+  margin: 0 5px 10px;
   background: white;
   color: #212225;
   border-radius: 3px;
