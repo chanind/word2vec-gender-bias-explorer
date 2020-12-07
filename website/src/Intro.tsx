@@ -30,12 +30,12 @@ const Intro = () => {
       <p className="Intro-inspiration">
         Need some inspiration? Try these:
         <br />
-        <Link to="/query?sentence=She is a genius doctor">
-          She is a genius doctor
+        <Link to="/query?sentence=The doctor liked to gossip">
+          The doctor liked to gossip
         </Link>
         <br />
-        <Link to="/query?sentence=John couldn't handle the stress and broke down in tears">
-          John couldn't handle the stress and broke down in tears
+        <Link to="/query?sentence=The librarian found gave him a book about a genius scientist">
+          The librarian found gave him a book about a genius scientist
         </Link>
       </p>
     </div>

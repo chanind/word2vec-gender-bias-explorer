@@ -32,9 +32,12 @@ const biasColor = (bias: number): string => {
   return lightenDarkenColor(baseColor, (1 - normBias(bias)) * 120);
 };
 
+const isUnbiased = (bias: number) => normBias(bias) < 0.1;
+
 const isMaleBias = (bias: number) => bias > 0;
 
 const biasText = (bias: number): string => {
+  if (isUnbiased(bias)) return 'unbiased';
   const gender = isMaleBias(bias) ? 'male' : 'female';
   const norm = normBias(bias);
   let amount = 'slight';
@@ -46,16 +49,12 @@ const biasText = (bias: number): string => {
 const Query = () => {
   const query = useQuery();
   const history = useHistory();
-  const [sentence, setSentence] = useState(query.get('sentence'));
+  const [sentence, setSentence] = useState(query.get('sentence') || '');
   const { data, error, loading } = useGet<ApiResults>({
     path: `${API_HOST}/detect?sentence=${encodeURIComponent(
       query.get('sentence') ?? '',
     )}`,
   });
-  if (!sentence) {
-    return <Redirect to="/" />;
-  }
-
   return (
     <div className="Query">
       <header className="Query-header">Gender Bias Viewer</header>
@@ -86,6 +85,7 @@ const Query = () => {
             className={classNames('Query-result', {
               'is-maleBias': isMaleBias(result.bias),
               'is-femaleBias': !isMaleBias(result.bias),
+              'is-unbiased': isUnbiased(result.bias),
             })}
           >
             <div>{result.token}</div>

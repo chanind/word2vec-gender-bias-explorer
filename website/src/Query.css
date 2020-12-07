@@ -67,6 +67,9 @@
   margin-right: 50%;
   float: right;
 }
+.Query-result.is-unbiased .Query-resultBias {
+  opacity: 0;
+}
 
 .Query-resultBiasPointer {
   position: absolute;
