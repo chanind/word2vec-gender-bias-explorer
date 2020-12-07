@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "https://chanind.github.io/gender-bias-viewer/static/css/main.4359b0b2.chunk.css",
-    "main.js": "https://chanind.github.io/gender-bias-viewer/static/js/main.57a69622.chunk.js",
-    "main.js.map": "https://chanind.github.io/gender-bias-viewer/static/js/main.57a69622.chunk.js.map",
+    "main.js": "https://chanind.github.io/gender-bias-viewer/static/js/main.da9ab1ea.chunk.js",
+    "main.js.map": "https://chanind.github.io/gender-bias-viewer/static/js/main.da9ab1ea.chunk.js.map",
     "runtime-main.js": "https://chanind.github.io/gender-bias-viewer/static/js/runtime-main.d54c8ce9.js",
     "runtime-main.js.map": "https://chanind.github.io/gender-bias-viewer/static/js/runtime-main.d54c8ce9.js.map",
     "static/js/2.906bbd89.chunk.js": "https://chanind.github.io/gender-bias-viewer/static/js/2.906bbd89.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.d54c8ce9.js",
     "static/js/2.906bbd89.chunk.js",
     "static/css/main.4359b0b2.chunk.css",
-    "static/js/main.57a69622.chunk.js"
+    "static/js/main.da9ab1ea.chunk.js"
   ]
 }
