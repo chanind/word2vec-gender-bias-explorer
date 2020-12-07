@@ -15,7 +15,7 @@ jobs:
         working-directory: ./website
         env:
           REACT_APP_API_HOST: ${{ secrets.API_HOST }}
-          PUBLIC_URL: /gender-bias-viewer
+          PUBLIC_URL: https://chanind.github.io/gender-bias-viewer
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
