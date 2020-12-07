@@ -34,8 +34,8 @@ const Intro = () => {
           The doctor liked to gossip
         </Link>
         <br />
-        <Link to="/query?sentence=The librarian found gave him a book about a genius scientist">
-          The librarian found gave him a book about a genius scientist
+        <Link to="/query?sentence=The librarian gave him a book about a genius scientist">
+          The librarian gave him a book about a genius scientist
         </Link>
       </p>
     </div>
