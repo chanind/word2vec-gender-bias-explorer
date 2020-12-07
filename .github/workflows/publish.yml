@@ -11,10 +11,12 @@ jobs:
       - uses: actions/setup-node@v1
       - run: yarn install
         working-directory: ./website
-      - uses: enriikke/gatsby-gh-pages-action@v2.1.1
+      - run: yarn build
+        working-directory: ./website
         env:
           REACT_APP_API_HOST: ${{ secrets.API_HOST }}
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          access-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-branch: gh-pages
-          working-dir: ./website
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./website/public
