@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect, useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useGet } from 'restful-react';
 import classNames from 'classnames';
 
