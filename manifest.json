@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Gender Bias Viewer",
+  "name": "Gender Bias Viewer",
   "icons": [
     {
       "src": "favicon.ico",
