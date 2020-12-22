@@ -32,7 +32,7 @@ const biasColor = (bias: number): string => {
   return lightenDarkenColor(baseColor, (1 - normBias(bias)) * 120);
 };
 
-const isUnbiased = (bias: number) => normBias(bias) < 0.1;
+const isUnbiased = (bias: number) => normBias(bias) < 0.1 && bias > 0;
 
 const isMaleBias = (bias: number) => bias > 0;
 
