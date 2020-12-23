@@ -18,6 +18,15 @@
 .Intro-searchForm {
   display: flex;
   margin-top: 10px;
+  width: 100%;
+  justify-content: center;
+}
+.Intro-searchFormInner {
+  display: flex;
+  margin-top: 10px;
+  max-width: 500px;
+  padding: 0 10px;
+  flex-grow: 1;
 }
 .Intro-search {
   padding: 10px;
@@ -25,7 +34,7 @@
   background: white;
   color: #212225;
   outline: none;
-  min-width: 400px;
+  flex-grow: 1;
   border: none;
   font-size: 20px;
 }

@@ -1,6 +1,15 @@
-.Query-header {
+.Query-header,
+.Query-header > a {
   font-size: 50px;
   padding: 40px 0;
+  color: white;
+  text-decoration: none;
+}
+.Query-searchBox {
+  display: flex;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 10px;
 }
 .Query-search {
   padding: 10px;
@@ -8,7 +17,8 @@
   background: white;
   color: #212225;
   outline: none;
-  min-width: 400px;
+  flex-grow: 1;
+  /* min-width: 400px; */
   border: none;
   font-size: 20px;
 }

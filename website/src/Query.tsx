@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useGet } from 'restful-react';
 import classNames from 'classnames';
 
@@ -32,7 +32,7 @@ const biasColor = (bias: number): string => {
   return lightenDarkenColor(baseColor, (1 - normBias(bias)) * 120);
 };
 
-const isUnbiased = (bias: number) => normBias(bias) < 0.1 && bias > 0;
+const isUnbiased = (bias: number) => normBias(bias) < 0.1;
 
 const isMaleBias = (bias: number) => bias > 0;
 
@@ -57,8 +57,11 @@ const Query = () => {
   });
   return (
     <div className="Query">
-      <header className="Query-header">Gender Bias Viewer</header>
+      <header className="Query-header">
+        <Link to="/">Gender Bias Viewer</Link>
+      </header>
       <form
+        className="Query-searchBox"
         onSubmit={evt => {
           evt.preventDefault();
           history.push(`/query?sentence=${encodeURIComponent(sentence)}`);
