@@ -2,7 +2,9 @@ from app import app
 from flask import request, jsonify
 import werkzeug
 from detect_bias import detect_bias_pca
-from nltk.tokenize import word_tokenize
+from nltk.tokenize import TweetTokenizer
+
+tokenizer = TweetTokenizer()
 
 
 @app.route("/")
@@ -19,7 +21,7 @@ def detect():
         raise werkzeug.exceptions.BadRequest(
             "Sentence must be at most 500 characters long"
         )
-    tokens = word_tokenize(sentence.lower())
+    tokens = tokenizer.tokenize(sentence)
     results = []
     for token in tokens:
         token_result = {"token": token, "bias": detect_bias_pca(token)}
