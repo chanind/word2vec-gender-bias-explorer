@@ -1,7 +1,7 @@
 from app import app
 from flask import request, jsonify
 import werkzeug
-from detect_bias import detect_bias
+from detect_bias import detect_bias_pca
 from nltk.tokenize import word_tokenize
 
 
@@ -22,6 +22,6 @@ def detect():
     tokens = word_tokenize(sentence.lower())
     results = []
     for token in tokens:
-        token_result = {"token": token, "bias": detect_bias(token)}
+        token_result = {"token": token, "bias": detect_bias_pca(token)}
         results.append(token_result)
     return jsonify({"results": results})
