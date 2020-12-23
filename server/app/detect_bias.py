@@ -18,7 +18,7 @@ biased_pairs = [(model[pair[0]], model[pair[1]]) for pair in biased_word_pairs]
 biases = [pair[0] - pair[1] for pair in biased_pairs]
 reversed_biases = [pair[1] - pair[0] for pair in biased_pairs]
 
-# simple detection, just use basic subtraction to get gender vector
+# simple detection, just use basic subtraction and averaging to get gender vector
 
 bias = sum(biases) / len(biases)
 origins = [(pair[0] + pair[1]) / 2 for pair in biased_pairs]
