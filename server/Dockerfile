@@ -8,7 +8,7 @@ WORKDIR $APP_HOME
 
 COPY ./requirements.txt .
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends gcc build-essential wget \
+    && apt-get install -y --no-install-recommends gcc build-essential wget libgomp1 \
     && rm -rf /var/lib/apt/lists/* \
     && pip install -r requirements.txt \
     && apt-get purge -y --auto-remove gcc build-essential
