@@ -6,13 +6,14 @@ ENV PYTHONUNBUFFERED True
 ENV APP_HOME /app
 WORKDIR $APP_HOME
 
+RUN apt-get update && apt-get install -y wget && wget -q https://s3.amazonaws.com/dl4j-distribution/GoogleNews-vectors-negative300.bin.gz \
+    && gunzip GoogleNews-vectors-negative300.bin
+
 COPY ./requirements.txt .
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends gcc build-essential wget libgomp1 \
+RUN apt-get install -y --no-install-recommends gcc build-essential libgomp1 \
     && rm -rf /var/lib/apt/lists/* \
     && pip install -r requirements.txt \
     && apt-get purge -y --auto-remove gcc build-essential
-
 
 COPY ./download_data.py .
 RUN python download_data.py

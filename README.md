@@ -7,7 +7,7 @@ https://chanind.github.io/gender-bias-viewer
 
 ## Why?
 
-This project is an attempt to use the biases learned by AI algorithms as a way to view the biases in our own language and society. AI learns from us, and learns the biases and prejudices that we ourselves teach it. Rather than trying to debias AI, this project tries to use the biases that are learned by AI as a way to show ourselves how our society and language are biased. Rather than trying to debias AI, we can use biased AI to help debias ourselves.
+AI learns from us, and learns the biases and prejudices that we teach it. Rather than trying to debias AI, this project tries to use the biases that are learned by AI as a way to show the that biases appear in human language. Also, I read the paper [Man is to Computer Programmer as Woman is to Homemaker? Debiasing Word Embeddings](https://proceedings.neurips.cc/paper/2016/file/a486cd07e4ac3d270571622f4f316ec5-Paper.pdf) and really wanted to do something fun with the concept!
 
 ## How it works
 
@@ -16,7 +16,17 @@ Homemaker? Debiasing Word Embeddings](https://proceedings.neurips.cc/paper/2016/
 
 The paper tries to remove those biases in the word embeddings, but this tool tries instead to simply show the biases that have been encoded in those word embeddings. This tool uses a pretrained [Google News word2vec dataset](https://code.google.com/archive/p/word2vec/).
 
-This tool works by trying to find a gender vector in the word embeddings by subtracting the vector for `she` from the vector for `he`, since these words should be semantically similar but differ only in the direction of gender. Then, gender bias in a word is determined simply by seeing if that word's vector in the bias direction lies closer to `he` or closer to `she`.
+This tool works by trying to find a gender vector in the word embeddings by using PCA to determine a gender vector between pairs of male and female words, since these words should be semantically similar but differ only in the direction of gender. Then, gender bias in a word is determined simply by projecting it alog this gender vector and seeing if it lies closer to the male or female groups of training words. The word pairs used for this are the following:
+
+- "she", "he"
+- "her", "his"
+- "woman", "man"
+- "Mary", "John"
+- "herself", "himself"
+- "daughter", "son"
+- "mother", "father"
+- "gal", "guy"
+- "girl", "boy"
 
 ## Project structure and setup
 
@@ -51,4 +61,8 @@ The website is a simple React app created using [create-react-app](https://creat
 
 ## I have an idea to improve this!
 
-Please, submit a PR or open an issue! Any help to make this project better is greatly appreciated!
+Please, submit a PR or open an issue! Any help or ideas to make this project better is greatly appreciated!
+
+## License
+
+This project is available under a MIT license

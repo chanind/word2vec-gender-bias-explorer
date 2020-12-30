@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import Loading from './components/Loading';
 import './Query.css';
 import lightenDarkenColor from './lightenDarkenColor';
+import Faq from './Faq';
 
 const API_HOST = process.env.REACT_APP_API_HOST || 'http://localhost:5000';
 
@@ -111,6 +112,9 @@ const Query = () => {
             <div className="Query-resultBiasText">{biasText(result.bias)}</div>
           </div>
         ))}
+      </div>
+      <div className="Query-faqContainer">
+        <Faq />
       </div>
     </div>
   );

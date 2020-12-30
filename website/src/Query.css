@@ -107,3 +107,10 @@
   padding-top: 5px;
   clear: both;
 }
+
+.Query-faqContainer {
+  max-width: 800px;
+  text-align: left;
+  margin: 0 auto;
+  padding: 0 10px;
+}
