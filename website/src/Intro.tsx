@@ -8,12 +8,16 @@ const Intro = () => {
   return (
     <div className="Intro">
       <header className="Intro-header">Gender Bias Viewer</header>
-      <p>Enter a word or sentence below to view the gender bias in each word</p>
+      <p className="Intro-subheader">
+        Enter a word or sentence below to view the gender bias in each word
+      </p>
       <form
         className="Intro-searchForm"
         onSubmit={evt => {
           evt.preventDefault();
-          history.push(`/query?sentence=${encodeURIComponent(sentence)}`);
+          if (sentence.trim() !== '') {
+            history.push(`/query?sentence=${encodeURIComponent(sentence)}`);
+          }
         }}
       >
         <div className="Intro-searchFormInner">
@@ -34,12 +38,16 @@ const Intro = () => {
           The doctor liked to gossip about the nurse
         </Link>
         <br />
-        <Link to="/query?sentence=The librarian gave him a book about a genius scientist">
-          The librarian gave him a book about a genius scientist
+        <Link to="/query?sentence=The librarian gave him a book about a bossy scientist">
+          The librarian gave him a book about a bossy scientist
         </Link>
         <br />
         <Link to="/query?sentence=She is a professor, not a teacher">
           She is a professor, not a teacher
+        </Link>
+        <br />
+        <Link to="/query?sentence=She is really good at tennis :)">
+          She is really good at tennis :)
         </Link>
       </p>
     </div>

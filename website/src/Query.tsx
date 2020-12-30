@@ -21,7 +21,7 @@ interface ApiResults {
   }[];
 }
 
-const MAX_BIAS = 0.3;
+const MAX_BIAS = 0.5;
 
 const normBias = (bias: number): number =>
   Math.min(Math.abs(bias), MAX_BIAS) / MAX_BIAS;
@@ -33,7 +33,7 @@ const biasColor = (bias: number): string => {
   return lightenDarkenColor(baseColor, (1 - normBias(bias)) * 120);
 };
 
-const isUnbiased = (bias: number) => normBias(bias) < 0.1;
+const isUnbiased = (bias: number) => normBias(bias) < 0.1 && bias > 0;
 
 const isMaleBias = (bias: number) => bias > 0;
 
@@ -65,7 +65,9 @@ const Query = () => {
         className="Query-searchBox"
         onSubmit={evt => {
           evt.preventDefault();
-          history.push(`/query?sentence=${encodeURIComponent(sentence)}`);
+          if (sentence.trim() !== '') {
+            history.push(`/query?sentence=${encodeURIComponent(sentence)}`);
+          }
         }}
       >
         <input

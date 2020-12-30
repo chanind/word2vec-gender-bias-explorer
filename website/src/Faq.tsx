@@ -6,12 +6,20 @@ const Faq: FC = () => (
     <h4 className="Faq-title">How does this work?</h4>
     <p className="Faq-description">
       This tool is based on the paper{' '}
-      <a href="https://proceedings.neurips.cc/paper/2016/file/a486cd07e4ac3d270571622f4f316ec5-Paper.pdf">
+      <a
+        target="_blank"
+        rel="noreferrer"
+        href="https://proceedings.neurips.cc/paper/2016/file/a486cd07e4ac3d270571622f4f316ec5-Paper.pdf"
+      >
         Man is to Computer Programmer as Woman is to Homemaker? Debiasing Word
         Embeddings
       </a>
       , and uses pretrained word embeddings from the{' '}
-      <a href="https://code.google.com/archive/p/word2vec/">
+      <a
+        target="_blank"
+        rel="noreferrer"
+        href="https://code.google.com/archive/p/word2vec/"
+      >
         Google News word2vec dataset
       </a>
       . It works by looking at differences between male and female word pairs
@@ -35,8 +43,14 @@ const Faq: FC = () => (
       If you think there's a mistake in the way this is coded, or if you have
       ideas for improvement or want to collaborate, please open an issue or make
       a pull request on the{' '}
-      <a href="https://github.com/chanind/gender-bias-viewer">Github repo</a>.
-      Contributions are very welcome :)
+      <a
+        target="_blank"
+        rel="noreferrer"
+        href="https://github.com/chanind/gender-bias-viewer"
+      >
+        Github repo
+      </a>
+      . Contributions are very welcome :)
     </p>
   </div>
 );
