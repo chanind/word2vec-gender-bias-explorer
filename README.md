@@ -16,7 +16,7 @@ Homemaker? Debiasing Word Embeddings](https://proceedings.neurips.cc/paper/2016/
 
 The paper tries to remove those biases in the word embeddings, but this tool tries instead to simply show the biases that have been encoded in those word embeddings. This tool uses a pretrained [Google News word2vec dataset](https://code.google.com/archive/p/word2vec/).
 
-This tool works by trying to find a gender vector in the word embeddings by using PCA to determine a gender vector between pairs of male and female words, since these words should be semantically similar but differ only in the direction of gender. Then, gender bias in a word is determined simply by projecting it alog this gender vector and seeing if it lies closer to the male or female groups of training words. The word pairs used for this are the following:
+This tool works by trying to find a "gender vector" in the word embeddings by using [PCA](https://en.wikipedia.org/wiki/Principal_component_analysis) between pairs of male and female words, since these words should be semantically similar but differ only in the direction of gender. Then, gender bias in a word is determined simply by projecting it along this gender vector and seeing if it lies closer to the male or female groups of training words. The word pairs used for this are the following:
 
 - "she", "he"
 - "her", "his"
