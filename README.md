@@ -1,6 +1,6 @@
 # Gender Bias Viewer
 
-A tool to show gender bias in sentences based on NLP word embeddings from Google News.
+A tool to show gender bias in sentences based on NLP word embeddings
 
 Live demo:
 https://chanind.github.io/gender-bias-viewer

@@ -136,3 +136,6 @@ dmypy.json
 
 # node
 .eslintcache
+
+# data
+s2v_reddit_2015_md

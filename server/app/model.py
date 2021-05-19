@@ -1,5 +1,6 @@
-from gensim.models import KeyedVectors
+from sense2vec import Sense2Vec
+from os import path
 
-model = KeyedVectors.load_word2vec_format(
-    "GoogleNews-vectors-negative300.bin", binary=True
+model = Sense2Vec().from_disk(
+    path.join(path.dirname(__file__), "../s2v_reddit_2015_md")
 )
