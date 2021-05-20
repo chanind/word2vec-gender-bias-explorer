@@ -28,16 +28,6 @@ const Faq: FC = () => (
       dataset.
     </p>
 
-    <h4 className="Faq-title">
-      Why do words like "the" and "it" have a male bias?
-    </h4>
-    <p className="Faq-description">
-      I'm not sure, but I think this is because in English, male tends to be
-      assumed as a default gender when not specified. Or maybe the Google News
-      dataset talks about more men than women? If you have a better idea, please
-      share!
-    </p>
-
     <h4 className="Faq-title">This code is all wrong!</h4>
     <p className="Faq-description">
       If you think there's a mistake in the way this is coded, or if you have

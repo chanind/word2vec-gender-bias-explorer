@@ -14,33 +14,49 @@ const useQuery = () => {
   return new URLSearchParams(useLocation().search);
 };
 
-interface ApiResults {
-  results: {
-    token: string;
-    bias: number;
-  }[];
+interface TokenPart {
+  whitespace: string;
+  pos: string;
+  dep: string;
+  ent: string;
+  skip: boolean;
 }
 
-const MAX_BIAS = 0.5;
+interface Token {
+  token: string;
+  bias: number;
+  parts: TokenPart[];
+}
+
+interface ApiResults {
+  results: Token[];
+}
+
+const MAX_BIAS = 0.7;
 
 const normBias = (bias: number): number =>
   Math.min(Math.abs(bias), MAX_BIAS) / MAX_BIAS;
 
-const biasWidth = (bias: number): string => `${50 * normBias(bias)}%`;
+const biasWidth = (token: Token): string => `${50 * normBias(token.bias)}%`;
 
-const biasColor = (bias: number): string => {
-  const baseColor = isMaleBias(bias) ? '#3F8EAA' : '#AA3F8E';
-  return lightenDarkenColor(baseColor, (1 - normBias(bias)) * 120);
+const biasColor = (token: Token): string => {
+  const baseColor = isMaleBias(token) ? '#3F8EAA' : '#AA3F8E';
+  return lightenDarkenColor(baseColor, (1 - normBias(token.bias)) * 120);
 };
 
-const isUnbiased = (bias: number) => normBias(bias) < 0.08;
+const isUnbiased = (token: Token) => {
+  if (token.parts.every(part => part.skip)) {
+    return true;
+  }
+  return token.bias < 0 && token.bias > -0.2;
+};
 
-const isMaleBias = (bias: number) => bias > 0;
+const isMaleBias = (token: Token) => !isUnbiased(token) && token.bias > 0;
 
-const biasText = (bias: number): string => {
-  if (isUnbiased(bias)) return 'unbiased';
-  const gender = isMaleBias(bias) ? 'male' : 'female';
-  const norm = normBias(bias);
+const biasText = (token: Token): string => {
+  if (isUnbiased(token)) return 'unbiased';
+  const gender = isMaleBias(token) ? 'male' : 'female';
+  const norm = normBias(token.bias);
   let amount = 'slight';
   if (norm > 0.3) amount = 'moderate';
   if (norm > 0.6) amount = 'strong';
@@ -89,29 +105,29 @@ const Query = () => {
           <div
             key={i}
             className={classNames('Query-result', {
-              'is-maleBias': isMaleBias(result.bias),
-              'is-femaleBias': !isMaleBias(result.bias),
-              'is-unbiased': isUnbiased(result.bias),
+              'is-maleBias': isMaleBias(result),
+              'is-femaleBias': !isMaleBias(result),
+              'is-unbiased': isUnbiased(result),
             })}
           >
             <div>{result.token}</div>
             <div
               className="Query-resultBias"
               style={{
-                width: biasWidth(result.bias),
-                background: biasColor(result.bias),
+                width: biasWidth(result),
+                background: biasColor(result),
               }}
             >
               <div
                 className="Query-resultBiasPointer"
                 style={{
-                  [isMaleBias(result.bias)
+                  [isMaleBias(result)
                     ? 'borderRightColor'
-                    : 'borderLeftColor']: biasColor(result.bias),
+                    : 'borderLeftColor']: biasColor(result),
                 }}
               />
             </div>
-            <div className="Query-resultBiasText">{biasText(result.bias)}</div>
+            <div className="Query-resultBiasText">{biasText(result)}</div>
           </div>
         ))}
       </div>

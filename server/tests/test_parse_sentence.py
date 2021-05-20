@@ -34,3 +34,12 @@ def test_parse_sentence_uses_named_entities():
         "in",
         "London",
     ]
+
+
+def test_parse_sentence_combines_compound_words():
+    assert textify_tokens(parse_sentence("Mary is a computer programmer")) == [
+        "Mary",
+        "is",
+        "a",
+        "computer programmer",
+    ]
