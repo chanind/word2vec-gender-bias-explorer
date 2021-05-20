@@ -3,10 +3,10 @@ import numpy as np
 from sklearn.decomposition import PCA
 
 biased_word_pairs = [
-    ("she", "he"),
-    ("her", "his"),
-    ("woman", "man"),
-    ("Mary", "John"),
+    ("she|NOUN", "he|NOUN"),
+    ("her|NOUN", "his|NOUN"),
+    ("woman|NOUN", "man|NOUN"),
+    ("Mary|PERSON", "John|PERSON"),
     ("herself", "himself"),
     ("daughter", "son"),
     ("mother", "father"),

@@ -19,27 +19,32 @@ def test_combine_compound_words(original, combined):
     assert combine_compound_words(original) == combined
 
 
-@pytest.mark.parametrize(
-    "original,parsed",
-    [
-        (
-            "I live in New York",
-            [
-                {"text": "I", "pos": "PRON"},
-                {"pos": "VERB", "text": "live"},
-                {"pos": "ADP", "text": "in"},
-                {"pos": "NOUN", "text": "New_York"},
-            ],
-        ),
-        (
-            "Who's there?",
-            [
-                {"text": "Who's", "pos": "AUX"},
-                {"text": "there", "pos": "ADV"},
-                {"text": "?", "pos": "PUNCT"},
-            ],
-        ),
-    ],
-)
-def test_parse_sentence(original, parsed):
-    assert parse_sentence(original) == parsed
+def textify_tokens(parse_result):
+    return [{"text": res["token"].text, "sense": res["sense"]} for res in parse_result]
+
+
+def test_parse_sentence():
+    assert textify_tokens(parse_sentence("I live in New York")) == [
+        {"text": "I", "sense": "NOUN"},
+        {"sense": "VERB", "text": "live"},
+        {"sense": "ADP", "text": "in"},
+        {"sense": "GPE", "text": "New_York"},
+    ]
+
+
+def test_parse_sense_with_possessives():
+    assert textify_tokens(parse_sentence("Who's there?")) == [
+        {"text": "Who", "sense": "NOUN"},
+        {"text": "'s", "sense": "VERB"},
+        {"text": "there", "sense": "ADV"},
+        {"text": "?", "sense": "PUNCT"},
+    ]
+
+
+def test_parse_sentence_uses_named_entities():
+    assert textify_tokens(parse_sentence("Mary is in London")) == [
+        {"text": "Mary", "sense": "PERSON"},
+        {"text": "is", "sense": "VERB"},
+        {"text": "in", "sense": "ADP"},
+        {"text": "London", "sense": "GPE"},
+    ]
