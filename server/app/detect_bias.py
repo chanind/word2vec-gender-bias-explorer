@@ -38,6 +38,9 @@ neutral_mean = np.mean(pca.transform(np.array([model[word] for word in neutral_w
 
 print(female_mean, neutral_mean, male_mean)
 
+positive_mean = max(male_mean, female_mean)
+negative_mean = min(male_mean, female_mean)
+
 
 def detect_bias_pca(vec):
     """
@@ -48,6 +51,6 @@ def detect_bias_pca(vec):
     word_val = pca.transform(np.array([vec]))[0][0]
     # rescaling word value so that the male/female average maps to 1 and -1, and neutral_mean maps to 0
     if word_val > neutral_mean:
-        return float((word_val - neutral_mean) / (male_mean - neutral_mean))
+        return float((word_val - neutral_mean) / (positive_mean - neutral_mean))
     else:
-        return float((neutral_mean - word_val) / (female_mean - neutral_mean))
+        return float((neutral_mean - word_val) / (negative_mean - neutral_mean))
