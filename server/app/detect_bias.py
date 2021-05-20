@@ -4,41 +4,37 @@ from sklearn.decomposition import PCA
 
 biased_word_pairs = [
     ("she|NOUN", "he|NOUN"),
-    ("her|NOUN", "his|NOUN"),
+    # ("her|NOUN", "his|NOUN"),
     ("woman|NOUN", "man|NOUN"),
-    ("Mary|PERSON", "John|PERSON"),
-    ("herself", "himself"),
-    ("daughter", "son"),
-    ("mother", "father"),
-    ("gal", "guy"),
-    ("girl", "boy"),
+    # ("Mary|PERSON", "John|PERSON"),
+    # ("herself|NOUN", "himself|NOUN"),
+    ("daughter|NOUN", "son|NOUN"),
+    ("mother|NOUN", "father|NOUN"),
+    # ("gal|NOUN", "guy|NOUN"),
+    ("girl|NOUN", "boy|NOUN"),
+]
+
+neutral_words = [
+    "is|VERB",
+    "was|VERB",
+    "the|DET",
+    "a|DET",
+    "it|NOUN",
 ]
 
 biased_pairs = [(model[pair[0]], model[pair[1]]) for pair in biased_word_pairs]
 biases = [pair[0] - pair[1] for pair in biased_pairs]
 reversed_biases = [pair[1] - pair[0] for pair in biased_pairs]
 
-# simple detection, just use basic subtraction and averaging to get gender vector
-
-bias = sum(biases) / len(biases)
-origins = [(pair[0] + pair[1]) / 2 for pair in biased_pairs]
-origin = sum(origins) / len(origins)
-
-
-def detect_bias_simple(word):
-    """
-    Simple bias algorithm, just average all the bias vectors together and use cosine similarity
-    """
-    if word not in model:
-        return None
-    return -1 * model.cosine_similarities(bias, [model[word] - origin])[0].astype(float)
-
-
 pca = PCA(n_components=1)
 pca.fit(np.array(biases + reversed_biases))
+print(pca.explained_variance_ratio_)
 
 female_mean = np.mean(pca.transform(np.array([pair[0] for pair in biased_pairs])))
 male_mean = np.mean(pca.transform(np.array([pair[1] for pair in biased_pairs])))
+neutral_mean = np.mean(pca.transform(np.array([model[word] for word in neutral_words])))
+
+print(female_mean, neutral_mean, male_mean)
 
 
 def detect_bias_pca(word):
@@ -48,5 +44,8 @@ def detect_bias_pca(word):
     if word not in model:
         return None
     word_val = pca.transform(np.array([model[word]]))[0][0]
-    # rescaling word value so that the male/female average maps to 1 and -1
-    return (word_val - (male_mean + female_mean) / 2) * 2 / (male_mean - female_mean)
+    # rescaling word value so that the male/female average maps to 1 and -1, and neutral_mean maps to 0
+    if word_val > neutral_mean:
+        return float((word_val - neutral_mean) / (male_mean - neutral_mean))
+    else:
+        return float((neutral_mean - word_val) / (female_mean - neutral_mean))
