@@ -123,6 +123,7 @@ venv.bak/
 # mypy
 .mypy_cache/
 .dmypy.json
+
 dmypy.json
 
 # Pyre type checker
@@ -139,3 +140,4 @@ dmypy.json
 
 # data
 s2v_reddit_2015_md
+s2v_reddit_2019_lg

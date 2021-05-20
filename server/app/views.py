@@ -19,20 +19,22 @@ def detect():
         raise werkzeug.exceptions.BadRequest(
             "Sentence must be at most 500 characters long"
         )
-    tokens_and_senses = parse_sentence(sentence)
+    objs = parse_sentence(sentence)
     results = []
-    for token_and_sense in tokens_and_senses:
-        token = token_and_sense["token"]
-        sense = token_and_sense["sense"]
-        word = token.text + "|" + sense
+    for obj in objs:
         token_result = {
-            "token": token.text,
-            "sense": sense,
-            "whitespace": token.whitespace_,
-            "pos": token.pos_,
-            "dep": token.dep_,
-            "skip": token.pos_ in ["AUX", "PUNCT", "SPACE"] or len(token) < 2,
-            "bias": detect_bias_pca(word),
+            "token": obj["text"],
+            "bias": detect_bias_pca(obj["vec"]),
+            "parts": [
+                {
+                    "whitespace": token.whitespace_,
+                    "pos": token.pos_,
+                    "dep": token.dep_,
+                    "ent": token.ent_type_,
+                    "skip": token.pos_ in ["AUX", "PUNCT", "SPACE"] or len(token) < 2,
+                }
+                for token in obj["tokens"]
+            ],
         }
         results.append(token_result)
     return jsonify({"results": results})

@@ -1,9 +1,9 @@
-from model import model
+from parse_sentence import model
 import numpy as np
 from sklearn.decomposition import PCA
 
 biased_word_pairs = [
-    ("she|NOUN", "he|NOUN"),
+    ("she|PRON", "he|PRON"),
     # ("her|NOUN", "his|NOUN"),
     ("woman|NOUN", "man|NOUN"),
     # ("Mary|PERSON", "John|PERSON"),
@@ -15,11 +15,13 @@ biased_word_pairs = [
 ]
 
 neutral_words = [
-    "is|VERB",
-    "was|VERB",
+    "is|AUX",
+    "was|AUX",
     "the|DET",
     "a|DET",
-    "it|NOUN",
+    "it|PRON",
+    "to|PART",
+    "to|ADP",
 ]
 
 biased_pairs = [(model[pair[0]], model[pair[1]]) for pair in biased_word_pairs]
@@ -37,13 +39,13 @@ neutral_mean = np.mean(pca.transform(np.array([model[word] for word in neutral_w
 print(female_mean, neutral_mean, male_mean)
 
 
-def detect_bias_pca(word):
+def detect_bias_pca(vec):
     """
     Use PCA to find the gender bias vector, and determine bias based on position along the gender vector
     """
-    if word not in model:
+    if vec is None:
         return None
-    word_val = pca.transform(np.array([model[word]]))[0][0]
+    word_val = pca.transform(np.array([vec]))[0][0]
     # rescaling word value so that the male/female average maps to 1 and -1, and neutral_mean maps to 0
     if word_val > neutral_mean:
         return float((word_val - neutral_mean) / (male_mean - neutral_mean))

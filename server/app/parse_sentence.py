@@ -1,45 +1,50 @@
 import spacy
+from os import path
 
 
 nlp = spacy.load("en_core_web_lg")
 # avoid doing word splitting and exceptions and crazy stuff, just do a basic whitespace based parse
 nlp.tokenizer.rules = {}
+s2v_component = nlp.add_pipe("sense2vec")
+s2v_component.from_disk(path.join(path.dirname(__file__), "../s2v_reddit_2019_lg"))
 
-
-def combine_compound_words(sentence):
-    doc = nlp(sentence)
-    reformulated_sentence_parts = []
-    compound_parts = []
-    for token in doc:
-        if token.dep_ == "compound":
-            compound_parts.append(token.text)
-        else:
-            if len(compound_parts):
-                compound_parts.append(token.text)
-                reformulated_sentence_parts.append(
-                    "_".join(compound_parts) + token.whitespace_
-                )
-                compound_parts = []
-            else:
-                reformulated_sentence_parts.append(token.text + token.whitespace_)
-    return "".join(reformulated_sentence_parts)
+model = s2v_component.s2v
 
 
 def extract_sense(token):
     sense = token.pos_
-    # sense2vec doesn't have a lot of the POS tags somehow, need to adjust
-    if sense == "PROPN":
-        sense = "NOUN"
-    if token.tag_[0] == "V":
-        sense = "VERB"
     if token.ent_type_:
         sense = token.ent_type_
-    if sense == "PRON":
-        sense = "NOUN"
     return sense
 
 
 def parse_sentence(sentence):
-    recombined_sentence = combine_compound_words(sentence)
-    doc = nlp(recombined_sentence)
-    return [{"token": token, "sense": extract_sense(token)} for token in doc]
+    doc = nlp(sentence)
+    results = []
+    reverse_entities_map = {}
+    used_entities = set()
+    for entity in doc.ents:
+        for token in entity:
+            reverse_entities_map[token] = entity
+    for token in doc:
+        if token in reverse_entities_map:
+            entity = reverse_entities_map[token]
+            if entity not in used_entities:
+                results.append(
+                    {
+                        "tokens": [tok for tok in entity],
+                        "text": entity.text,
+                        "vec": entity._.s2v_vec,
+                    }
+                )
+                used_entities.add(entity)
+        else:
+            results.append(
+                {
+                    "tokens": [token],
+                    "text": token.text,
+                    "vec": token._.s2v_vec,
+                }
+            )
+
+    return results
