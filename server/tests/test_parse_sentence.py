@@ -1,4 +1,3 @@
-import pytest
 from parse_sentence import parse_sentence
 
 
