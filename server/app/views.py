@@ -1,8 +1,26 @@
+from os import environ
+from PcaBiasCalculator import PcaBiasCalculator
+from PrecalculatedBiasCalculator import PrecalculatedBiasCalculator
 from app import app
 from flask import request, jsonify
 import werkzeug
-from detect_bias import detect_bias, neutral_words
 from parse_sentence import parse_sentence
+
+if environ.get("USE_PRECALCULATED_BIASES", "").upper() == "TRUE":
+    print("using precalculated biases")
+    calculator = PrecalculatedBiasCalculator()
+else:
+    calculator = PcaBiasCalculator()
+
+neutral_words = [
+    "is",
+    "was",
+    "who",
+    "what",
+    "where",
+    "the",
+    "it",
+]
 
 
 @app.route("/")
@@ -24,7 +42,7 @@ def detect():
     for obj in objs:
         token_result = {
             "token": obj["text"],
-            "bias": detect_bias(obj["text"]),
+            "bias": calculator.detect_bias(obj["text"]),
             "parts": [
                 {
                     "whitespace": token.whitespace_,

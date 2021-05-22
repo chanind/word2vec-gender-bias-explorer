@@ -3,13 +3,15 @@ Helper script to pre-generate all word biases as a big JSON, so the server doesn
 """
 
 import json
-from model import model
-from detect_bias import detect_bias
+from os import path
+from PcaBiasCalculator import PcaBiasCalculator
 
 
 def preprocess_biases():
-    bias_mapping = {word: detect_bias(word) for word in model.vocab.keys()}
-    with open("biases.json", "w") as outfile:
+    calculator = PcaBiasCalculator()
+    bias_mapping = {word: calculator.detect_bias(word) for word in calculator.keys()}
+    output_file = path.join(path.dirname(__file__), "../data/biases.json")
+    with open(output_file, "w") as outfile:
         json.dump(bias_mapping, outfile, ensure_ascii=False, indent=2)
 
 
