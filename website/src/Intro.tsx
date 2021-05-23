@@ -7,7 +7,7 @@ const Intro = () => {
   const [sentence, setSentence] = useState('');
   return (
     <div className="Intro">
-      <header className="Intro-header">Gender Bias Viewer</header>
+      <header className="Intro-header">Word2Vec Gender Bias Explorer</header>
       <p className="Intro-subheader">
         Enter a word or sentence below to view the gender bias in each word
       </p>
@@ -34,20 +34,20 @@ const Intro = () => {
       <p className="Intro-inspiration">
         Need some inspiration? Try these:
         <br />
-        <Link to="/query?sentence=The doctor liked to gossip about the nurse">
-          The doctor liked to gossip about the nurse
+        <Link to="/query?sentence=The librarian punched the firefighter">
+          The librarian punched the firefighter
         </Link>
         <br />
-        <Link to="/query?sentence=The librarian gave him a book about a bossy scientist">
-          The librarian gave him a book about a bossy scientist
+        <Link to="/query?sentence=She plays tennis, football, and baseball">
+          She plays tennis, football, and baseball
         </Link>
         <br />
-        <Link to="/query?sentence=She is a professor, not a teacher">
-          She is a professor, not a teacher
+        <Link to="/query?sentence=Don't be bossy, be aggressive">
+          Don't be bossy, be aggressive
         </Link>
         <br />
-        <Link to="/query?sentence=She is really good at tennis :)">
-          She is really good at tennis :)
+        <Link to="/query?sentence=The hero saved everyone using science">
+          The hero saved everyone using science
         </Link>
       </p>
     </div>

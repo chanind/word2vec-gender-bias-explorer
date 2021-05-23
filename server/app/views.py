@@ -50,7 +50,7 @@ def detect():
                     "dep": token.dep_,
                     "ent": token.ent_type_,
                     "skip": token.pos_
-                    in ["AUX", "ADP", "PUNCT", "SPACE", "DET", "PART"]
+                    in ["AUX", "ADP", "PUNCT", "SPACE", "DET", "PART", "CCONJ"]
                     or len(token) < 2
                     or token.text.lower() in neutral_words,
                 }

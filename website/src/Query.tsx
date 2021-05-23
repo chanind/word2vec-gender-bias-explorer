@@ -7,8 +7,7 @@ import Loading from './components/Loading';
 import './Query.css';
 import lightenDarkenColor from './lightenDarkenColor';
 import Faq from './Faq';
-
-const API_HOST = process.env.REACT_APP_API_HOST || 'http://localhost:5000';
+import { API_HOST } from './config';
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -75,7 +74,7 @@ const Query = () => {
   return (
     <div className="Query">
       <header className="Query-header">
-        <Link to="/">Gender Bias Viewer</Link>
+        <Link to="/">Word2Vec Gender Bias Explorer</Link>
       </header>
       <form
         className="Query-searchBox"
