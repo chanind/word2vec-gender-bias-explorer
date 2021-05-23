@@ -4,7 +4,7 @@ import './OctocatCorner.css';
 // from https://tholman.com/github-corners/
 const OctocatCorner = () => (
   <a
-    href="https://github.com/chanind/gender-bias-viewer"
+    href="https://github.com/chanind/word2vec-gender-bias-explorer"
     className="OctocatCorner"
     aria-label="View source on GitHub"
   >

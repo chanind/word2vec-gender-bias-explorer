@@ -3,7 +3,7 @@
 A tool to show gender bias in sentences based on NLP word embeddings from Google News.
 
 Live demo:
-https://chanind.github.io/gender-bias-viewer
+https://chanind.github.io/word2vec-gender-bias-explorer
 
 ## Why?
 

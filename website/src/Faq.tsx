@@ -36,7 +36,7 @@ const Faq: FC = () => (
       <a
         target="_blank"
         rel="noreferrer"
-        href="https://github.com/chanind/gender-bias-viewer"
+        href="https://github.com/chanind/word2vec-gender-bias-explorer"
       >
         Github repo
       </a>
