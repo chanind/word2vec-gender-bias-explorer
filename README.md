@@ -1,6 +1,6 @@
-# Gender Bias Viewer
+# Word2vec Gender Bias Explorer
 
-A tool to show gender bias in sentences based on NLP word embeddings from Google News.
+A tool to explore gender bias in sentences based on NLP word embeddings from Google News.
 
 Live demo:
 https://chanind.github.io/word2vec-gender-bias-explorer
