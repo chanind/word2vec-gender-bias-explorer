@@ -49,6 +49,11 @@ const Intro = () => {
         <Link to="/query?sentence=The hero saved everyone using science">
           The hero saved everyone using science
         </Link>
+        <br />
+        <Link to="/query?sentence=bass, drums, guitar, harmonica, saxophone, banjo, piano, harp, cello, violin, flute">
+          bass, drums, guitar, harmonica, saxophone, banjo, piano, harp, cello,
+          violin, flute
+        </Link>
       </p>
     </div>
   );
