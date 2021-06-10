@@ -47,7 +47,7 @@ const isUnbiased = (token: Token) => {
   if (token.parts.every(part => part.skip)) {
     return true;
   }
-  return token.bias < 0 && token.bias > -0.2;
+  return token.bias <= 0 && token.bias > -0.2;
 };
 
 const isMaleBias = (token: Token) => !isUnbiased(token) && token.bias > 0;
