@@ -63,13 +63,6 @@ The website is a simple React app created using [create-react-app](https://creat
 
 Please, submit a PR or open an issue! Any help or ideas to make this project better is greatly appreciated!
 
-## Work with me!
-
-I'm interested in doing a PhD in NLP in 2022, and would love to work with
-researchers doing NLP work in the meantime. Please reach out at
-<a href="mailto:chanindav@gmail.com">chanindav@gmail.com</a> if you have a
-project I can be a part of.
-
 ## License
 
 This project is available under a MIT license
