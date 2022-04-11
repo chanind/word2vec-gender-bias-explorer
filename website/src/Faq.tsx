@@ -42,14 +42,6 @@ const Faq: FC = () => (
       </a>
       . Contributions are very welcome :)
     </p>
-
-    <h4 className="Faq-title">Work with me!</h4>
-    <p className="Faq-description">
-      I'm interested in doing a PhD in NLP in 2022, and would love to work with
-      researchers doing NLP work in the meantime. Please reach out at{' '}
-      <a href="mailto:chanindav@gmail.com">chanindav@gmail.com</a> if you have a
-      project I can be a part of.
-    </p>
   </div>
 );
 
